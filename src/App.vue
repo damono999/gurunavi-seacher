@@ -1,28 +1,51 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="wrapper">
+    <Header></Header>
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 export default {
-  name: 'app',
+  methods: {
+    beforeEnter() {
+      this.$root.$emit("triggerScroll");
+    }
+  },
   components: {
-    HelloWorld
+    Header,
+    Footer
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scope>
+.a-init {
+  padding: 5px;
+  border: 1px solid #f2f2f2;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f2f2f2;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
 }
 </style>
