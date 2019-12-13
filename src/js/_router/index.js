@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from './components/Home/Home';
-import ShowStore from './components/ShowStore/ShowStore';
-import ResultSearch from './components/ResultSearch/ResultSearch';
+import Home from '@pages/Home/Home';
+import ShowStore from '@pages/ShowStore/ShowStore';
+import ResultSearch from '@pages/ResultSearch/ResultSearch';
 
 
 Vue.use(Router);
