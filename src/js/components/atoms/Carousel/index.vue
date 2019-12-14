@@ -1,29 +1,32 @@
 <template>
-  <div class="c-carousel">
+  <div class="carousel">
     <div class="prev" @click="prevImg()">＜</div>
     <div class="next" @click="nextImg()">＞</div>
-    <div class="c-carousel-items">
+    <div class="carousel-items">
       <!-- <button @click="show = !show">fjdlfjslfjsdk</button> -->
       <transition :name="transitionName" mode="out-in">
         <template v-for="(img, index) in carouselImgs">
           <div
             v-if="index === visibleContentNumber"
-            class="c-carousel-item"
+            class="carousel-item"
             :key="img.name"
           >
-            <img :src="img.image_url.shop_image1" class="c-carousel-item-img" />
+            <img :src="img.image_url.shop_image1" class="carousel-item-img" />
           </div>
         </template>
       </transition>
     </div>
-    <div class="c-carousel-bars">
+    <div class="carousel-bars">
       <div
         v-for="i of carouselImgs.length"
-        :class="['c-carousel-sercle', visibleContentNumber === i-1 ? 'is-active': '', '']"
+        :class="[
+          'carousel-sercle',
+          visibleContentNumber === i - 1 ? 'is-active' : '',
+          ''
+        ]"
         :key="i"
-        @click="changeImg(i-1)"
-      >
-      </div>
+        @click="changeImg(i - 1)"
+      ></div>
     </div>
   </div>
 </template>
@@ -35,7 +38,7 @@ export default {
     return {
       carouselImgs: [],
       visibleContentNumber: 0,
-      transitionName: 'show-prev',
+      transitionName: "show-prev",
       show: true
     };
   },
@@ -47,12 +50,18 @@ export default {
       }, 5000);
     },
     prevImg() {
-      this.transitionName = 'show-prev';
-      this.visibleContentNumber = this.visibleContentNumber === 0 ? this.carouselImgs.length - 1 : this.visibleContentNumber - 1;
+      this.transitionName = "show-prev";
+      this.visibleContentNumber =
+        this.visibleContentNumber === 0
+          ? this.carouselImgs.length - 1
+          : this.visibleContentNumber - 1;
     },
     nextImg() {
-      this.transitionName = 'show-next';
-      this.visibleContentNumber = this.visibleContentNumber === this.carouselImgs.length - 1 ? 0 : this.visibleContentNumber + 1;
+      this.transitionName = "show-next";
+      this.visibleContentNumber =
+        this.visibleContentNumber === this.carouselImgs.length - 1
+          ? 0
+          : this.visibleContentNumber + 1;
     },
     changeImg(targetNumber) {
       this.visibleContentNumber = targetNumber;
@@ -67,7 +76,9 @@ export default {
         }
       })
       .then(({ data }) => {
-        this.carouselImgs.push(...data.rest.filter(img => img.image_url.shop_image1? true:false));
+        this.carouselImgs.push(
+          ...data.rest.filter(img => (img.image_url.shop_image1 ? true : false))
+        );
       })
       .catch(err => {
         console.log(err);
@@ -80,18 +91,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$baseColor1: #f39800;
-$baseColor2: gray;
-$baseColor3: #fff;
-
-.c-carousel {
+.carousel {
   width: 800px;
   height: 300px;
   margin: 0 auto;
   background-color: black;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, .18);
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.18);
 
   .prev,
   .next {
@@ -120,11 +127,8 @@ $baseColor3: #fff;
     right: 8px;
     padding-left: 5px;
   }
-  &-items {
-  }
 
   &-item {
-
     &-img {
       width: 800px;
       height: 300px;
@@ -170,7 +174,7 @@ $baseColor3: #fff;
 .show-next-leave-active,
 .show-prev-enter-active,
 .show-prev-leave-active {
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .show-next-enter,
