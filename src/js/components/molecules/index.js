@@ -1,7 +1,7 @@
-import Header from './Header';
-import Footer from './Footer';
+import HomeCarousel from './HomeCarousel';
+import HomeTabs from './HomeTabs';
 
 export {
-  Header,
-  Footer,
+  HomeCarousel,
+  HomeTabs,
 };

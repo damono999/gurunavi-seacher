@@ -1,12 +1,15 @@
+import '@styles/style.scss';
+
 import '@babel/polyfill'
-// import '@scss/style.scss';
 import Vue from 'vue'
 import App from '@pages'
-// import router from './_router/router'
+import router from '@router'
+import store from '@store'
 
 Vue.config.productionTip = false
 
 new Vue({
-  // router: router,
+  router,
+  store,
   render: h => h(App),
 }).$mount('#app')
