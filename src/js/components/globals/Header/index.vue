@@ -34,6 +34,12 @@ import {
 } from '@atoms';
 
 export default {
+  beforeRouteUpdate() {
+    this.keyword = localStorage.getItem('keyword') || '';
+  },
+  created() {
+    this.keyword = localStorage.getItem('keyword') || '';
+  },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },
@@ -70,6 +76,12 @@ export default {
         name: 'search',
         query,
       });
+    },
+  },
+  watch: {
+    keyword(val) {
+      console.log('object');
+      localStorage.setItem('keyword', val);
     },
   },
 };
