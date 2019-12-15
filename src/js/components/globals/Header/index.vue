@@ -95,7 +95,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.8s;
+  transition: opacity .4s;
 }
 
 .fade-leave,
@@ -120,7 +120,7 @@ export default {
 
   &-form {
     height: 30px;
-    padding: 15px;
+    padding: 15px 0;
     display: flex;
 
     .is-inline-block {

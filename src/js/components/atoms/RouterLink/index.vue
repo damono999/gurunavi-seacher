@@ -37,8 +37,6 @@ export default {
   height: 50px;
   margin: 5px 0;
   font-weight: 700;
-  padding-left: 10px;
-  border-left: #fff 10px solid;
   text-decoration: none;
   color: black;
 

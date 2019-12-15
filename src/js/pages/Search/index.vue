@@ -89,7 +89,7 @@ export default {
   &-content {
     display: flex;
     background-color: #fff;
-    margin: 15px;
+    margin: 15px 0;
     box-shadow: 0 0 4px 1px;
 
 
