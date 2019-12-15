@@ -35,10 +35,10 @@ import {
 
 export default {
   beforeRouteUpdate() {
-    this.keyword = localStorage.getItem('keyword') || '';
+    this.keyword = sessionStorage.getItem('keyword') || '';
   },
   created() {
-    this.keyword = localStorage.getItem('keyword') || '';
+    this.keyword = sessionStorage.getItem('keyword') || '';
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
@@ -81,7 +81,7 @@ export default {
   watch: {
     keyword(val) {
       console.log('object');
-      localStorage.setItem('keyword', val);
+      sessionStorage.setItem('keyword', val);
     },
   },
 };
