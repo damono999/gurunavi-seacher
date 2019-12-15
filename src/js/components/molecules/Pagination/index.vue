@@ -29,7 +29,7 @@
     <template v-for="i of lastPage">
       <app-button
         v-if="Math.abs(currentPage - i) <= 3"
-        :key="i"
+        :key="createUniqueKey(i)"
         pagination
         :button="false"
         :disabled="i === currentPage"

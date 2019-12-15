@@ -4,7 +4,7 @@
       <div class="result-search">
         <div
           v-for="(store, i) in this.stores"
-          :key="store.name"
+          :key="createUniqueKey(store.name)"
           class="result-search-content"
         >
           <figure class="result-search-content-gurally">

@@ -89,6 +89,8 @@ export default {
 @mixin is-flex($wrap) {
   display: flex;
   flex-flow: $wrap row;
+  align-items: flex-start;
+  align-content: flex-start;
 }
 
 .btn {
@@ -191,6 +193,7 @@ export default {
     border: 1px solid $baseColor2;
     border-top: none;
     padding: 8px;
+    min-height: 350px;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     background: $baseColor3;
