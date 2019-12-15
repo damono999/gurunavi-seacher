@@ -31,13 +31,18 @@
         </div>
       </div>
     </div>
+    <app-pagination
+      :last-page="lastPage"
+      :current-page="currentPage"
+      @toPage="toPage"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import subPhoto from '@img/PAK96_bistrokaunta-_TP_V.jpg';
-
+import { Pagination } from '@molecules';
 
 export default {
   beforeRouteUpdate(to, from, next) {
@@ -50,10 +55,32 @@ export default {
   data() {
     return {
       stores: [],
-    }
+      totalHitCount: 0,
+      hitPerPage: 0,
+      pageOffset: 1,
+    };
   },
-  computed: {},
+  components: {
+    appPagination: Pagination,
+  },
+  computed: {
+    lastPage() {
+      if(!this.totalHitCount && !this.hitPerPage) return;
+      return Math.ceil(this.totalHitCount / this.hitPerPage);
+    },
+    currentPage() {
+      return this.pageOffset;
+    },
+  },
   methods: {
+    toPage(page) {
+      if (page === 0) return;
+      const query = Object.assign({}, this.$route.query, { 'offset_page': page });
+      this.$router.push({
+        name: 'search',
+        query,
+      });
+    },
     getSubPhoto() {
       return subPhoto;
     },
@@ -69,7 +96,9 @@ export default {
         params: form
       })
       .then(({ data }) => {
-        console.log(data.rest[0]);
+        this.totalHitCount = data.total_hit_count;
+        this.hitPerPage = data.hit_per_page;
+        this.pageOffset = data.page_offset;
         this.stores = data.rest;
       }).catch((err) => {
         console.log(`err: ${err}`);

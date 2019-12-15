@@ -9,12 +9,35 @@
 <script>
 export default {
   props: {
-
+    button: {
+      type: Boolean,
+      default: true,
+    },
+    pointer: {
+      type: Boolean,
+      default: false,
+    },
+    pagination: {
+      type: Boolean,
+      default: false,
+    },
+    bgWidth: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     classes() {
       return {
-        button: true,
+        'button': this.button,
+        'button--pointer': this.pointer,
+        'button--pagination': this.pagination,
+        'button--bg-width': this.bgWidth,
+        'button--disabled': this.disabled,
       };
     },
   },
@@ -41,5 +64,34 @@ export default {
     box-shadow: 0 0 5px 1px #00bfff;
     outline: none;
   }
+}
+
+.button--pagination {
+  margin: 0 2px;
+  padding: 0;
+  background: $baseColor4;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  color: #fff;
+
+  &:hover,
+  &:active {
+    color: $baseColor4;
+    background: #fff;
+    border: 1px solid $baseColor4;
+    border-radius: 10px;
+  }
+}
+.button--disabled {
+  background-color: $disabledColor;
+  cursor: default;
+  &:hover {
+    opacity: 1;
+  }
+}
+.button--pointer {
+  cursor: pointer;
 }
 </style>
