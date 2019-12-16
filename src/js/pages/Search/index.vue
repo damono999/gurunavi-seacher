@@ -1,30 +1,38 @@
 <template>
   <div class="bg">
     <div class="inner">
-      <div class="result-search">
+      <div class="search">
         <div
           v-for="(store, i) in this.stores"
           :key="createUniqueKey(store.name)"
-          class="result-search-content"
+          class="search-content"
         >
-          <figure class="result-search-content-gurally">
+          <figure class="search-content-gurally">
             <img
               :src="store.image_url.shop_image1 || getSubPhoto()"
               :alt="'store:' + i"
-              class="result-search-content-img"
+              class="search-content-img"
             />
           </figure>
-          <section class="result-search-content-detail">
-            <h2 class="result-search-content-title">{{ store.name }}</h2>
-            <div class="result-search-content-address">{{ store.address }}</div>
-            <p class="result-search-content-link">
+          <section class="search-content-detail">
+            <h2 class="search-content-title">{{ store.name }}</h2>
+            <div class="search-content-address">{{ store.address }}</div>
+            <p class="search-content-links">
               <a
                 :href="store.url"
                 variant="primary"
                 target="_blank"
                 rel="noopener"
+                class="search-content-link"
               >
                 ぐるなびで見る
+              </a>
+              <a
+                @click="toggleModal"
+                href="#"
+                class="search-content-link"
+              >
+                詳細を見る
               </a>
             </p>
           </section>
@@ -36,6 +44,12 @@
       :current-page="currentPage"
       @toPage="toPage"
     />
+    <app-modal
+      :isOpen="isOpen"
+      @click="toggleModal"
+    >
+      OK
+    </app-modal>
   </div>
 </template>
 
@@ -43,6 +57,7 @@
 import axios from 'axios';
 import subPhoto from '@img/PAK96_bistrokaunta-_TP_V.jpg';
 import { Pagination } from '@molecules';
+import { Modal } from '@atoms';
 
 export default {
   beforeRouteUpdate(to, from, next) {
@@ -58,10 +73,12 @@ export default {
       totalHitCount: 0,
       hitPerPage: 0,
       pageOffset: 1,
+      isOpen: false,
     };
   },
   components: {
     appPagination: Pagination,
+    appModal: Modal,
   },
   computed: {
     lastPage() {
@@ -80,6 +97,9 @@ export default {
         name: 'search',
         query,
       });
+    },
+    toggleModal()  {
+      this.isOpen = !this.isOpen;
     },
     getSubPhoto() {
       return subPhoto;
@@ -113,7 +133,7 @@ export default {
   padding: 10px 0 60px;
 }
 
-.result-search {
+.search {
 
   &-content {
     display: flex;
@@ -131,8 +151,12 @@ export default {
       margin-top: 10px;
     }
 
-    &-link {
+    &-links {
       margin-top: 10px;
+    }
+
+    &-link:nth-child(n+2) {
+      margin-left: 15px;
     }
 
 

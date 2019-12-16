@@ -80,7 +80,6 @@ export default {
   },
   watch: {
     keyword(val) {
-      console.log('object');
       sessionStorage.setItem('keyword', val);
     },
   },
@@ -89,11 +88,14 @@ export default {
 
 <style lang="scss" scoped>
 .fade-enter,
-.fade-enter-to {
+.fade-leave-to {
   opacity: 0;
 }
 
-.fade-enter-active,
+.fade-enter-active {
+  transition: opacity .8s;
+}
+
 .fade-leave-active {
   transition: opacity .4s;
 }
