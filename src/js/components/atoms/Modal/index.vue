@@ -4,10 +4,16 @@
   >
     <div
       v-if="isOpen"
-      class="cover"
-      @click="$emit('click')"
+      class="bg"
     >
-      <div class="content">
+      <div
+        class="cover"
+        @click="$emit('click')"
+      >
+      </div>
+      <div
+        :class="['content', classes()]"
+      >
         <slot />
       </div>
     </div>
@@ -20,7 +26,18 @@ export default {
     isOpen: {
       type: Boolean,
       default: false,
-    }
+    },
+    center: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    classes() {
+      return {
+        'center': this.center,
+      };
+    },
   },
 }
 </script>
@@ -41,18 +58,26 @@ export default {
   opacity: 1;
 }
 
-.cover {
-  z-index: 10;
+.bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+}
+
+.cover {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   background-color: rgba(0,0,0, .7);
 }
 
 .content {
-  position: relative;
+  position: absolute;
   padding: 10px;
   background-color: #fff;
   top: 50%;
@@ -61,5 +86,10 @@ export default {
   width: 400px;
   min-height: 300px;
   z-index: 11;
+  display: inline-block;
+}
+
+.center {
+  text-align: center;
 }
 </style>

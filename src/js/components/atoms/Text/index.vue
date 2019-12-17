@@ -12,9 +12,13 @@ export default {
   props: {
     tag: {
       type: String,
-      default: '',
+      default: 'p',
     },
     bg: {
+      type: Boolean,
+      default: false,
+    },
+    pointer: {
       type: Boolean,
       default: false,
     },
@@ -24,6 +28,7 @@ export default {
       return {
         'text': true,
         'bg': this.bg,
+        'pointer': this.pointer,
       };
     },
   },
@@ -34,9 +39,14 @@ export default {
 .text {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: 600;
+  word-wrap: break-word;
 }
 
 .bg {
   font-size: 30px;
+}
+
+.pointer {
+  cursor: pointer;
 }
 </style>

@@ -28,7 +28,7 @@
                 ぐるなびで見る
               </a>
               <a
-                @click="toggleModal"
+                @click="toggleModal(store)"
                 href="#"
                 class="search-content-link"
               >
@@ -47,8 +47,53 @@
     <app-modal
       :isOpen="isOpen"
       @click="toggleModal"
+      center
     >
-      OK
+      <div class="mt">
+        <a
+          :href="targetStore.url"
+          variant="primary"
+          target="_blank"
+          rel="noopener"
+          class="search-content-link"
+        >
+          ぐるなびで見る
+        </a>
+      </div>
+      <div class="mt">
+        <app-text
+          tag="p"
+        >
+          {{ `住所: ${this.targetStore.address}` }}
+        </app-text>
+      </div>
+      <div
+        class="mt"
+        v-if="this.targetStore.pr"
+      >
+        <app-text
+          tag="p"
+        >
+          {{ `説明: ${ this.targetStore.pr.pr_short }` }}
+        </app-text>
+      </div>
+      <div
+        class="mt"
+        v-if="this.targetStore.pr"
+      >
+        <app-text
+          tag="p"
+        >
+          {{ `詳細: ${ this.targetStore.pr.pr_long	}` }}
+        </app-text>
+      </div>
+      <div class="mt">
+        <app-button
+          @click="toggleModal"
+        >
+          閉じる
+        </app-button>
+      </div>
     </app-modal>
   </div>
 </template>
@@ -57,7 +102,7 @@
 import axios from 'axios';
 import subPhoto from '@img/PAK96_bistrokaunta-_TP_V.jpg';
 import { Pagination } from '@molecules';
-import { Modal } from '@atoms';
+import { Modal, Button, Text } from '@atoms';
 
 export default {
   beforeRouteUpdate(to, from, next) {
@@ -74,11 +119,14 @@ export default {
       hitPerPage: 0,
       pageOffset: 1,
       isOpen: false,
+      targetStore: {},
     };
   },
   components: {
     appPagination: Pagination,
     appModal: Modal,
+    appButton: Button,
+    appText: Text,
   },
   computed: {
     lastPage() {
@@ -98,7 +146,8 @@ export default {
         query,
       });
     },
-    toggleModal()  {
+    toggleModal(store = null) {
+      this.targetStore = Object.assign({}, store);
       this.isOpen = !this.isOpen;
     },
     getSubPhoto() {
@@ -133,6 +182,15 @@ export default {
   padding: 10px 0 60px;
 }
 
+.is-flex {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.mt {
+  margin-top: 20px;
+}
+
 .search {
 
   &-content {
@@ -158,7 +216,6 @@ export default {
     &-link:nth-child(n+2) {
       margin-left: 15px;
     }
-
 
     &-img {
       width: 150px;

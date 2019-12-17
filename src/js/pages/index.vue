@@ -13,13 +13,14 @@
 import {
   Footer,
   Header,
-} from '@globals'
+} from '@globals';
+
 export default {
   components: {
     appHeader: Header,
     appFooter: Footer,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

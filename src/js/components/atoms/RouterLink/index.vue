@@ -19,11 +19,16 @@ export default {
       type: String,
       default: 'p',
     },
+    pointer: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     classes() {
       return {
-        text: true,
+        'text': true,
+        'pointer': this.pointer,
       };
     },
   },
@@ -41,7 +46,11 @@ export default {
   color: black;
 
   &:hover {
-    opacity: 0.5;
+    opacity: .7;
   }
+}
+
+.pointer {
+  cursor: pointer;
 }
 </style>

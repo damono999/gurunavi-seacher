@@ -6,6 +6,7 @@
           <app-router-link
             tag="h1"
             to="/"
+            pointer
           >
             ぐるなびサーチ
           </app-router-link>
