@@ -17,10 +17,10 @@
           :key="id"/>
         </GmapMap>
       </section>
-      <section>
+      <section class="mt">
         <app-home-carousel />
       </section>
-      <section class="tabs">
+      <section class="mt">
         <app-home-tabs />
       </section>
     </div>
@@ -121,7 +121,7 @@ export default {
   padding: 45px 0 60px;
 }
 
-.tabs {
+.mt {
   margin-top: 60px;
 }
 </style>
