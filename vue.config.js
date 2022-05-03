@@ -2,9 +2,6 @@ const path = require('path');
 const resolve = (dir) => path.join(__dirname, dir);
 
 module.exports = {
-  outputDir: 'docs',
-  assetsDir: './',
-  publicPath: './',
   configureWebpack: {
     devtool: 'source-map',
   },
