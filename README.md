@@ -1,4 +1,10 @@
-# gurunavi-seacher
+# ぐるなびAPIの有料化
+無料版の提供が禁止されたため店の検索機能は使えなくなりました。
+
+**参考記事**
+https://boccitabi.com/gurunabiapi-syoyo/
+# 環境
+node version: 12.22.7
 
 ## Project setup
 ```
@@ -20,5 +26,3 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
