@@ -18,9 +18,9 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.6.0",
-    "@vue/cli-plugin-babel": "^4.0.0",
-    "@vue/cli-plugin-eslint": "^4.0.0",
-    "@vue/cli-service": "^4.0.0",
+    "@vue/cli-plugin-babel": "^4.5.19",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -28,7 +28,7 @@
     "node-sass": "^4.12.0",
     "popper.js": "^1.15.0",
     "portal-vue": "^2.1.4",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^13.2.0",
     "vue-template-compiler": "^2.6.10",
     "serialize-javascript": "2.1.1",
     "highlight.js": ">=10.4.1"
